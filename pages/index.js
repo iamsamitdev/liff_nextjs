@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react'
 import { useRouter }  from 'next/router';
 import Head from 'next/head'
+import Image from 'next/image'
 
 const Home = () => {
 
@@ -17,24 +17,27 @@ const Home = () => {
     const router = useRouter()
 
     const handleLogout = async () => {
-      // const liff = (await import('@line/liff')).default
-      // await liff.ready
       liff.logout()
       router.push('/')
     }
 
     return (
-        <div>
+        <section>
             <Head>My Profile</Head>
             <h1>Profile</h1>
+            <div>
+              {profile.pictureUrl && <Image
+                src={profile.pictureUrl}
+                alt={profile.displayName}
+                width={300}
+                height={300}
+              />}
+            </div>
             <div>UserId: {profile.userId}</div>
             <div>Name: {profile.displayName}</div>
             <div>Status: {profile.statusMessage}</div>
-            <div>
-              <img src={profile.pictureUrl} alt="My Profile" width={300} />
-            </div>
             <button onClick={handleLogout}>Logout</button>
-        </div>
+        </section>
     )
 }
 

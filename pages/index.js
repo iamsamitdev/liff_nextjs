@@ -13,6 +13,14 @@ const Home = () => {
         setProfile(profile)
     }, [profile.userId])
 
+    handleLogout = async() => {
+
+      const liff = (await import('@line/liff')).default
+      await liff.ready
+      liff.logout()
+
+    }
+
     return (
         <div>
             <Head>My Profile</Head>
@@ -21,6 +29,7 @@ const Home = () => {
             <div>Name: {profile.displayName}</div>
             <div>Status: {profile.statusMessage}</div>
             <div><Image src={profile.pictureUrl} alt="profile image" width={300} /></div>
+            <button onClick={this.handleLogout}>Logout</button>
         </div>
     )
 }

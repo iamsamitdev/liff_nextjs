@@ -1,21 +1,28 @@
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Image from 'next/image'
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
+const Home = () => {
+  const [profile, setProfile] = useState({})
 
-      <Head>
-        <title>LIFF NextJS Demo</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async() => {
+        const liff = (await import('@line/liff')).default
+        await liff.ready
+        const profile = await liff.getProfile()
+        setProfile(profile)
+    }, [profile.userId])
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          LIFF NextJS Demo
-        </h1>
-      </main>
-        
-    </div>
-  )
+    return (
+        <div>
+            <Head>My Profile</Head>
+            <h1>Profile</h1>
+            <div>UserId: {profile.userId}</div>
+            <div>Name: {profile.displayName}</div>
+            <div>Status: {profile.statusMessage}</div>
+            <div><Image src={profile.pictureUrl} alt="profile image" width={300}></Image></div>
+        </div>
+    )
 }
+
+export default Home

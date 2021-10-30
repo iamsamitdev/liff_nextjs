@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 const Home = () => {
 
     const [profile, setProfile] = useState({})
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async() => {
         const liff = (await import('@line/liff')).default
@@ -14,12 +14,13 @@ const Home = () => {
         setProfile(profile)
     }, [profile.userId])
     
-    const handleLogout = async () => {
+    const router = useRouter()
 
+    const handleLogout = async () => {
       const liff = (await import('@line/liff')).default
       await liff.ready
       liff.logout()
-
+      router.reload(window.location.pathname)
     }
 
     return (

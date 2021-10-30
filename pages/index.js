@@ -17,8 +17,8 @@ const Home = () => {
     const router = useRouter()
 
     const handleLogout = async () => {
-      const liff = (await import('@line/liff')).default
-      await liff.ready
+      // const liff = (await import('@line/liff')).default
+      // await liff.ready
       liff.logout()
       router.push('/')
     }

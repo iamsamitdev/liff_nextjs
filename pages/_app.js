@@ -12,10 +12,15 @@ function MyApp({ Component, pageProps }) {
     const liff = (await import('@line/liff')).default
 
     try{
-      await liff.init({liffId})
+      await liff.init({liffId}) // initail liff id
       console.log("initial success")
     }catch(error){
       console.error('liff error', error.message)
+    }
+
+    // Check status login
+    if(!liff.isLoggedIn()){
+      liff.login()
     }
 
   })

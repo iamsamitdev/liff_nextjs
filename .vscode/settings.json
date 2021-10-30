@@ -1,0 +1,8 @@
+{
+    "workbench.colorCustomizations": {
+        "terminal.selectionBackground": "#a82060",
+        "terminal.foreground": "#ffffff"
+    },
+    "terminal.integrated.fontWeight": "300",
+    "terminal.integrated.fontSize": 16
+}

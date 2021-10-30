@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter }  from 'next/router';
 import Head from 'next/head'
 
 const Home = () => {
@@ -20,7 +20,7 @@ const Home = () => {
       const liff = (await import('@line/liff')).default
       await liff.ready
       liff.logout()
-      router.reload(window.location.pathname)
+      router.push('/')
     }
 
     return (
@@ -31,7 +31,7 @@ const Home = () => {
             <div>Name: {profile.displayName}</div>
             <div>Status: {profile.statusMessage}</div>
             <div>
-              <img src="{profile.pictureUrl}" alt="My Profile" width={300} />
+              <img src={profile.pictureUrl} alt="My Profile" width={300} />
             </div>
             <button onClick={handleLogout}>Logout</button>
         </div>

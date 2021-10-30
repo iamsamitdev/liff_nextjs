@@ -20,7 +20,7 @@ const Home = () => {
             <div>UserId: {profile.userId}</div>
             <div>Name: {profile.displayName}</div>
             <div>Status: {profile.statusMessage}</div>
-            <div><Image src={profile.pictureUrl} alt="profile image" width={300}></Image></div>
+            <div><Image src={profile.pictureUrl} alt="profile image" width={300} /></div>
         </div>
     )
 }

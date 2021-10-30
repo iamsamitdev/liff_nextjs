@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 
 const Home = () => {
-  const [profile, setProfile] = useState({})
+
+    const [profile, setProfile] = useState({})
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async() => {
@@ -12,8 +13,8 @@ const Home = () => {
         const profile = await liff.getProfile()
         setProfile(profile)
     }, [profile.userId])
-
-    handleLogout = async() => {
+    
+    const handleLogout = async () => {
 
       const liff = (await import('@line/liff')).default
       await liff.ready
@@ -28,8 +29,10 @@ const Home = () => {
             <div>UserId: {profile.userId}</div>
             <div>Name: {profile.displayName}</div>
             <div>Status: {profile.statusMessage}</div>
-            <div><Image src={profile.pictureUrl} alt="profile image" width={300} /></div>
-            <button onClick={this.handleLogout}>Logout</button>
+            <div>
+              <img src="{profile.pictureUrl}" alt="My Profile" width={300} />
+            </div>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     )
 }

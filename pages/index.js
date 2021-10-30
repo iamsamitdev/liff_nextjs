@@ -29,8 +29,8 @@ const Home = () => {
               {profile.pictureUrl && <Image
                 src={profile.pictureUrl}
                 alt={profile.displayName}
-                width={300}
-                height={300}
+                width={500}
+                height={500}
               />}
             </div>
             <div>UserId: {profile.userId}</div>
